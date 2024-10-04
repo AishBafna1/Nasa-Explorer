@@ -1,0 +1,67 @@
+/* src/pages/APOD.css */
+
+.apod-container {
+    margin-top: 80px; /* Push content below the navbar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in the total width/height */
+  }
+  
+  .apod-content {
+    max-width: 1200px;
+    width: 100%; /* Full width */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.5s;
+  }
+  
+  .apod-image {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .apod-video {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    border-radius: 10px;
+  }
+  
+  .description {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .date {
+    font-size: 1rem;
+    margin-top: 10px;
+    color: #f0db4f;
+    text-align: center;
+  }
+  
+  /* Animation for content */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h1 {
+    color: #4d2a21; /* Change the color */
+}
+
+  

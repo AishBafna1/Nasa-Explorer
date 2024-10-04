@@ -1,0 +1,102 @@
+ /* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%; /* Make this height auto to allow scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.apod-container {
+  position: relative; /* Relative positioning for the content */
+  min-height: 100vh; /* Ensure the container is at least full height */
+  padding: 20px; /* Add some padding */
+  box-sizing: border-box; /* Include padding in height calculations */
+}
+
+
+.homepage {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Background Video */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the entire background */
+  z-index: -1; /* Send video behind the content */
+}
+
+/* Overlay Content */
+.overlay {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4); /* Optional semi-transparent background for better text contrast */
+}
+
+/* Navbar */
+.navbar {
+  position: absolute; /* Make it float above the video */
+  top: 20px; /* Move navbar closer to the top */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #f0db4f; /* Hover color for the links */
+}
+
+/* Description */
+.description {
+  margin-top: 20px;
+  max-width: 800px;
+  color: #f0db4f; /* Change description text color */
+  font-family: 'Georgia', serif; /* Change the font family */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Optional text shadow for better visibility */
+}
+
+.description h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace; /* Different font for the title */
+  color: #ffffff; /* White color for the heading */
+}
+
+.description p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-family: 'Georgia', serif; /* Font family for paragraph */
+  color: #eaeaea; /* Light color for the paragraph */
+}

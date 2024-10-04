@@ -1,0 +1,35 @@
+/* MarsPhotos.css */
+
+.mars-photos-container {
+    padding: 20px;
+    background-color: #b69d9d25; /* Background color to contrast with images */
+    color: #fff; /* White text color for readability */
+    height: 100vh; /* Full height of the viewport */
+    overflow-y: auto; /* Allow vertical scrolling if content exceeds viewport height */
+}
+
+.photos-gallery {
+    display: flex;
+    flex-wrap: wrap; /* Allow images to wrap to the next line */
+    justify-content: center; /* Center the images */
+}
+
+.photo-item {
+    margin: 10px; /* Space between images */
+    flex: 0 1 calc(33.333% - 20px); /* Responsive sizing (3 images per row) */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.mars-photo {
+    width: 100%; /* Full width of the parent container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Optional: shadow for depth */
+}
+
+.date, .rover-name {
+    text-align: center; /* Center the text */
+    color: #030302; /* Change text color */
+    margin-top: 5px; /* Space above the text */
+    font-style: oblique;
+}

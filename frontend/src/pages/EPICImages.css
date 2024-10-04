@@ -1,0 +1,41 @@
+/* src/pages/EPICImages.css */
+
+.epic-images-container {
+    padding: 20px;
+    background-color: #b69d9d25; /* Black background for contrast */
+    color: #fff; /* White text color */
+    min-height: 100vh; /* Full height */
+  }
+  
+  .epic-images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .epic-image-item {
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Shadow for depth */
+    text-align: center; /* Center the content */
+  }
+  
+  .epic-image-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .epic-image-item p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+  
+  .spinner {
+    color: #1b1818;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  

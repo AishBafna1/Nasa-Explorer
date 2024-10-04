@@ -1,0 +1,51 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  position: fixed; /* Ensure the navbar stays fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  z-index: 10; /* Ensure navbar stays above other elements */
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  margin: 0 20px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Adjust font size for visibility */
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #f0db4f; /* Hover color */
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .navbar ul li {
+    margin: 0 10px; /* Reduce margin on smaller screens */
+  }
+
+  .navbar ul li a {
+    font-size: 1rem; /* Reduce font size */
+  }
+}
+
+/* Content container adjustment */
+.content {
+  padding-top: 70px; /* Adjust this value according to your navbar height */
+}
