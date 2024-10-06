@@ -8,7 +8,7 @@ const port = 5000;
 // NASA API key
 const NASA_API_KEY = "Jz4HJntWR4irZ7XwhBMIhWFnfo5q7PKdU1X1k9Xv";
 
-const cors = require('cors');
+// Use CORS middleware to allow requests from any origin temporarily
 app.use(cors({
   origin: '*',  // Allow all origins temporarily
 }));
@@ -56,8 +56,6 @@ app.get('/api/epic', async (req, res) => {
   }
 });
 
-
-
 app.get('/api/neo', async (req, res) => {
   try {
     const response = await axios.get(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${NASA_API_KEY}`);
@@ -68,10 +66,6 @@ app.get('/api/neo', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch NEO data' });
   }
 });
-
-
-
-
 
 // Route to fetch NASA Image and Video Library
 app.get('/api/nasa-library', async (req, res) => {
@@ -87,8 +81,7 @@ app.get('/api/nasa-library', async (req, res) => {
       console.error('Error fetching NASA library data:', error);
       res.status(500).json({ error: 'Failed to fetch NASA library data' });
     }
-  });
-  
+});
   
 // Start the server only if this file is the main module
 if (require.main === module) {
