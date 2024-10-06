@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",  // This is the command that will start your server
+    "dev": "nodemon index.js",  // Optional: for development mode, if you have nodemon installed
     "test": "jest"
   },
   "keywords": [],
@@ -16,6 +18,10 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^7.0.0"
+    "supertest": "^7.0.0",
+    "nodemon": "^2.0.22" // Add this if you want to use nodemon for development
+  },
+  "engines": {
+    "node": ">=14.x"  // Specify your required Node.js version
   }
 }
