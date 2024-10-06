@@ -6,13 +6,13 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 function NEOChart({ neoData }) {
   const chartData = {
-    labels: neoData.map(neo => neo.name), // Labels are NEO names
+    labels: neoData.map(neo => neo.name),
     datasets: [
       {
         label: 'Miss Distance (km)',
-        data: neoData.map(neo => parseFloat(neo.close_approach_data[0].miss_distance.kilometers)),
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Bar color
-        borderColor: 'rgba(0, 0, 0, 1)', // Border color
+        data: neoData.map(neo => parseFloat(neo.missDistance)),
+        backgroundColor: 'rgba(0, 0, 0, 0.6)', // Change bar color to black with some transparency
+        borderColor: 'rgba(0, 0, 0, 1)', // Change border color to black
         borderWidth: 1,
       }
     ]
@@ -30,10 +30,14 @@ function NEOChart({ neoData }) {
         color: 'black',
       },
     },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
   };
 
   return <Bar data={chartData} options={options} />;
 }
 
 export default NEOChart;
-
