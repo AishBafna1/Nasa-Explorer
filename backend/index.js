@@ -8,7 +8,10 @@ const port = 5000;
 // NASA API key
 const NASA_API_KEY = "Jz4HJntWR4irZ7XwhBMIhWFnfo5q7PKdU1X1k9Xv";
 
-app.use(cors({ origin: 'http://localhost:3000' }));
+const cors = require('cors');
+app.use(cors({
+  origin: '*',  // Allow all origins temporarily
+}));
 
 // Basic route to check if the server is running
 app.get('/', (req, res) => {
