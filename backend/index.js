@@ -3,7 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // NASA API key
 const NASA_API_KEY = "Jz4HJntWR4irZ7XwhBMIhWFnfo5q7PKdU1X1k9Xv";
