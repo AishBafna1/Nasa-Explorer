@@ -6,16 +6,15 @@ const app = express();
 const port = 5000;
 
 // NASA API key
-const NASA_API_KEY = 'Jz4HJntWR4irZ7XwhBMIhWFnfo5q7PKdU1X1k9Xv';
+const NASA_API_KEY = "Jz4HJntWR4irZ7XwhBMIhWFnfo5q7PKdU1X1k9Xv";
 
-app.use(cors()); // Enable CORS
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Basic route to check if the server is running
 app.get('/', (req, res) => {
   res.send('NASA Explorer Backend is running');
 });
 
-// Route to fetch NASA Astronomy Picture of the Day (APOD)
 // Route to fetch NASA Astronomy Picture of the Day (APOD)
 app.get('/api/apod', async (req, res) => {
     const { date } = req.query; // Get the date from the query parameter
@@ -41,36 +40,34 @@ app.get('/api/mars-photos', async (req, res) => {
 });
 
 app.get('/api/epic', async (req, res) => {
-    try {
-      const response = await axios.get(`https://api.nasa.gov/EPIC/api/natural/images?api_key=${NASA_API_KEY}`);
-      
-      // Log the entire response to inspect the URLs
-      console.log(response.data); 
-  
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error fetching EPIC images:', error);
-      res.status(500).json({ error: 'Failed to fetch EPIC images' });
-    }
-  });
+  try {
+    const response = await axios.get(`https://api.nasa.gov/EPIC/api/natural?api_key=${NASA_API_KEY}`);
+    
+    // Log the entire response to inspect the URLs
+    console.log('Response from NASA API:', response.data); 
 
-// Route to fetch NeoWs data
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching EPIC images:', error.response?.data || error.message);
+    res.status(500).json({ error: 'Failed to fetch EPIC images' });
+  }
+});
+
+
+
 app.get('/api/neo', async (req, res) => {
-    try {
-      const response = await axios.get(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${NASA_API_KEY}`);
-      const neoData = response.data.near_earth_objects.map(neo => ({
-        id: neo.id,
-        name: neo.name,
-        diameter: neo.estimated_diameter.kilometers.estimated_diameter_max,
-        closeApproachDate: neo.close_approach_data[0]?.close_approach_date || 'Unknown',
-        missDistance: neo.close_approach_data[0]?.miss_distance.kilometers || 'Unknown',
-      }));
-      res.json(neoData);  // Send formatted data to the frontend
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch NeoWs data' });
-    }
-  });
-  
+  try {
+    const response = await axios.get(`https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=${NASA_API_KEY}`);
+    console.log(response.data.near_earth_objects); // Log the response data
+    res.json(response.data); // Send the data back to the frontend
+  } catch (error) {
+    console.error('Error fetching NEO data:', error);
+    res.status(500).json({ error: 'Failed to fetch NEO data' });
+  }
+});
+
+
+
 
 
 // Route to fetch NASA Image and Video Library

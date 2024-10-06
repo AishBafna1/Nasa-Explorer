@@ -1,42 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar'; // Include the Navbar
-import './EPICImages.css'; // Ensure you have the EPIC Images styles
+import Navbar from '../components/Navbar'; 
+import './EPICImages.css'; 
 
 function EPICImages() {
   const [epicImages, setEpicImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch EPIC images from the API
   const fetchEPICImages = async () => {
-    setLoading(true); // Set loading state before fetching
+    setLoading(true);
     try {
-      const response = await fetch('/api/epic'); // Fetch data from your backend
-      const data = await response.json(); // Parse the response as JSON
-      console.log('EPIC Images Data:', data); // Log the fetched data
+      const response = await fetch('/api/epic'); 
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      console.log('EPIC Images Data:', data);
 
-      if (data && Array.isArray(data)) {
-        setEpicImages(data); // Set the state to the array of images
+      // Check if the received data is an array
+      if (Array.isArray(data)) {
+        setEpicImages(data);
       } else {
         console.error('Unexpected data structure:', data);
-        setEpicImages([]); // Set to empty if unexpected structure
+        setEpicImages([]); // Set to empty array if unexpected
       }
     } catch (error) {
-      console.error('Error fetching EPIC images:', error); // Log any errors
-      setError(error); // Set the error state
+      console.error('Error fetching EPIC images:', error);
+      setError(error); // Log and set error
     } finally {
-      setLoading(false); // Set loading to false after fetching
+      setLoading(false); // Ensure loading state is reset
     }
   };
 
-  // Call the fetch function when the component mounts
   useEffect(() => {
-    fetchEPICImages(); // Call the function to fetch EPIC images
+    fetchEPICImages(); 
   }, []);
 
   return (
     <div className="epic-images-container">
-      <Navbar /> {/* Include the Navbar */}
+      <Navbar /> 
 
       {loading && <div className="spinner">Loading...</div>}
       {error && <p className="error">Error fetching data: {error.message}</p>}
@@ -54,6 +56,7 @@ function EPICImages() {
                 src={`https://epic.gsfc.nasa.gov/archive/natural/${year}/${month}/${day}/jpg/${image.image}.jpg`}
                 alt={image.caption}
                 className="epic-image"
+                onError={(e) => { e.target.onerror = null; e.target.src="fallback-image-url.jpg"; }}
               />
               <p>{image.caption}</p>
               <p><strong>Date:</strong> {image.date}</p>

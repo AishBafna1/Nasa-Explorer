@@ -11,15 +11,15 @@ function NeoWs() {
   const fetchNeoData = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/neo');
+      const response = await fetch('http://localhost:5000/api/neo');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log('NEO Data:', data);
+      console.log('NEO Data:', data); // Log to check the structure
 
       // Directly setting the array to the state
-      setNeoData(data);
+      setNeoData(data.near_earth_objects); // Update to set the actual NEO objects
     } catch (error) {
       console.error('Error fetching NEO data:', error);
       setError(error);
@@ -44,9 +44,15 @@ function NeoWs() {
           {neoData.map((neo) => (
             <div key={neo.id} className="neo-item">
               <h2>{neo.name}</h2>
-              <p><strong>Estimated Diameter:</strong> {neo.diameter.toFixed(2)} m</p>
-              <p><strong>Close Approach Date:</strong> {neo.closeApproachDate}</p>
-              <p><strong>Miss Distance:</strong> {neo.missDistance} km</p>
+              <p>
+                <strong>Estimated Diameter:</strong> {neo.estimated_diameter?.meters?.estimated_diameter_max?.toFixed(2) || 'N/A'} m
+              </p>
+              <p>
+                <strong>Close Approach Date:</strong> {neo.close_approach_data[0]?.close_approach_date || 'N/A'}
+              </p>
+              <p>
+                <strong>Miss Distance:</strong> {neo.close_approach_data[0]?.miss_distance?.kilometers || 'N/A'} km
+              </p>
             </div>
           ))}
         </div>
@@ -56,3 +62,4 @@ function NeoWs() {
 }
 
 export default NeoWs;
+
