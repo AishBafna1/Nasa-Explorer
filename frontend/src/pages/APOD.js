@@ -9,7 +9,7 @@ function APOD() {
   const [selectedDate, setSelectedDate] = useState(''); // State for selected date
 
   // Set your deployed backend URL here
-  const apiUrl = 'https://nasa-explorer-3x83.onrender.com/api/apod'; // Replace with your actual backend URL
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com/api/*'; // Replace with your actual backend URL
 
   // Function to fetch APOD data
   const fetchAPOD = async (date) => {
