@@ -15,7 +15,7 @@ function APOD() {
   const fetchAPOD = async (date) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/apod?date=${date}`);
+      const response = await fetch(`${apiUrl}/api/apod?date=${date}`);
       const data = await response.json();
       setApodData(data);
     } catch (error) {
