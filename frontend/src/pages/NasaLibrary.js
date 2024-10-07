@@ -7,9 +7,7 @@ function NasaLibrary() {
   const [libraryData, setLibraryData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  // Set your deployed backend URL here
-  const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Replace with your actual backend URL
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com';
 
   // Function to fetch NASA library images
   const fetchLibraryImages = async () => {
@@ -22,7 +20,7 @@ function NasaLibrary() {
     setError(null); // Reset any previous errors
 
     try {
-      const response = await fetch(`/api/nasa-library?q=${searchQuery}`);
+      const response = await fetch(`${apiUrl}/api/nasa-library?q=${encodeURIComponent(searchQuery)}`);
       const data = await response.json();
       console.log('NASA Library Data:', data);
 
