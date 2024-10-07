@@ -9,6 +9,8 @@ import EPICImages from './pages/EPICImages';
 import NeoWs from './pages/NeoWs';
 import NasaLibrary from './pages/NasaLibrary';
 
+const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Set your deployed backend URL here
+
 function Home() {
   return (
     <div className="homepage">
