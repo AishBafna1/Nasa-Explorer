@@ -16,10 +16,19 @@ function APOD() {
     setLoading(true);
     try {
       const response = await fetch(`${apiUrl}/api/apod?date=${date}`);
+      
+      if (!response.ok) {
+        // If the response was not ok, throw an error
+        const errorMessage = await response.text();
+        throw new Error(`Error: ${response.status} - ${errorMessage}`);
+      }
+
       const data = await response.json();
+      console.log('Fetched APOD data:', data); // Log the fetched data
       setApodData(data);
     } catch (error) {
-      setError(error);
+      console.error('Error fetching APOD:', error);
+      setError(error.message || 'Failed to fetch APOD data');
     } finally {
       setLoading(false);
     }
@@ -39,7 +48,7 @@ function APOD() {
       <Navbar /> {/* Include the Navbar */}
       
       {loading && <div className="spinner">Loading...</div>}
-      {error && <p className="error">Error fetching data: {error.message}</p>}
+      {error && <p className="error">Error fetching data: {error}</p>}
       
       <div className="apod-content">
         <h1>{apodData?.title || 'Astronomy Picture of the Day'}</h1>
@@ -55,10 +64,10 @@ function APOD() {
 
         {/* Media display */}
         <div className="media-wrapper">
-          {apodData && apodData.media_type === 'image' ? (
+          {apodData && apodData.media_type === 'image' && apodData.url ? (
             <img src={apodData.url} alt={apodData.title} className="apod-image" />
           ) : (
-            apodData && (
+            apodData && apodData.media_type === 'video' && apodData.url && (
               <iframe
                 title="APOD Video"
                 src={apodData.url}
