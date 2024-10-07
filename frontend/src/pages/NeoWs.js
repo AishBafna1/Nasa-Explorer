@@ -8,6 +8,9 @@ function NeoWs() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+// Set your deployed backend URL here
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Replace with your actual backend URL
+  
   const fetchNeoData = async () => {
     setLoading(true);
     try {
