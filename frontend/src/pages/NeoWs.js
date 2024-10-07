@@ -7,14 +7,12 @@ function NeoWs() {
   const [neoData, setNeoData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com';
 
-// Set your deployed backend URL here
-  const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Replace with your actual backend URL
-  
   const fetchNeoData = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/neo');
+      const response = await fetch(`${apiUrl}/api/neo`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -65,4 +63,3 @@ function NeoWs() {
 }
 
 export default NeoWs;
-
