@@ -8,6 +8,9 @@ function MarsPhotos() {
     const [error, setError] = useState(null);
     const [sol, setSol] = useState(1000); // Default Sol value
 
+    // Set your deployed backend URL here
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Replace with your actual backend URL
+
     // Wrap fetchMarsPhotos in useCallback
     const fetchMarsPhotos = useCallback(async () => {
         setLoading(true);
