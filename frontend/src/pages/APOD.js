@@ -8,27 +8,17 @@ function APOD() {
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(''); // State for selected date
 
-  // Set your deployed backend URL here
-  const apiUrl = 'https://nasa-explorer-3x83.onrender.com/api/*'; // Replace with your actual backend URL
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com';
 
   // Function to fetch APOD data
   const fetchAPOD = async (date) => {
     setLoading(true);
     try {
       const response = await fetch(`${apiUrl}/api/apod?date=${date}`);
-      
-      if (!response.ok) {
-        // If the response was not ok, throw an error
-        const errorMessage = await response.text();
-        throw new Error(`Error: ${response.status} - ${errorMessage}`);
-      }
-
       const data = await response.json();
-      console.log('Fetched APOD data:', data); // Log the fetched data
       setApodData(data);
     } catch (error) {
-      console.error('Error fetching APOD:', error);
-      setError(error.message || 'Failed to fetch APOD data');
+      setError(error);
     } finally {
       setLoading(false);
     }
@@ -48,7 +38,7 @@ function APOD() {
       <Navbar /> {/* Include the Navbar */}
       
       {loading && <div className="spinner">Loading...</div>}
-      {error && <p className="error">Error fetching data: {error}</p>}
+      {error && <p className="error">Error fetching data: {error.message}</p>}
       
       <div className="apod-content">
         <h1>{apodData?.title || 'Astronomy Picture of the Day'}</h1>
@@ -64,10 +54,10 @@ function APOD() {
 
         {/* Media display */}
         <div className="media-wrapper">
-          {apodData && apodData.media_type === 'image' && apodData.url ? (
+          {apodData && apodData.media_type === 'image' ? (
             <img src={apodData.url} alt={apodData.title} className="apod-image" />
           ) : (
-            apodData && apodData.media_type === 'video' && apodData.url && (
+            apodData && (
               <iframe
                 title="APOD Video"
                 src={apodData.url}
@@ -88,3 +78,4 @@ function APOD() {
 }
 
 export default APOD;
+
