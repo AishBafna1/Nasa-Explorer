@@ -7,13 +7,12 @@ function EPICImages() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Set your deployed backend URL here
-  const apiUrl = 'https://nasa-explorer-3x83.onrender.com'; // Replace with your actual backend URL
+  const apiUrl = 'https://nasa-explorer-3x83.onrender.com';
 
   const fetchEPICImages = async () => {
     setLoading(true);
     try {
-      const response = await fetch('${apiUrl}/api/epic'); 
+      const response = await fetch(`${apiUrl}/api/epic`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -72,3 +71,4 @@ function EPICImages() {
 }
 
 export default EPICImages;
+
