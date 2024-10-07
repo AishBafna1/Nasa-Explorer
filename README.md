@@ -35,53 +35,69 @@ NASA EXPLORER - https://frontend-pvks.onrender.com
 - **Backend**: Node.js, Express
 - **APIs**: NASA Open APIs
 - **Deployment**: [Render](https://render.com/) (https://frontend-pvks.onrender.com)
+
 ## Installation
 
 To set up the project locally, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository**:
    ```bash
    git clone https://github.com/yourusername/nasa-data-explorer.git
 
-2. Navigate to the backend directory and install the dependencies:
-bash
-Copy code
-cd nasa-data-explorer/backend
+2. Navigate to the project directory:
+cd nasa-data-explorer
+
+3. Install dependencies for the frontend:
+cd frontend
 npm install
 
-3. Create a .env file in the backend directory and add your NASA API key:
-plaintext
-Copy code
-NASA_API_KEY=your_api_key
-
-4. Start the backend server:
-bash
-Copy code
-npm start
-
-5. In a new terminal, navigate to the frontend directory and install the dependencies:
-bash
-Copy code
-cd nasa-data-explorer/frontend
+4. Install dependencies for the backend:
+cd ../backend
 npm install
 
-6. Start the frontend application:
-bash
-Copy code
-npm start
+5. Create a .env file in the backend directory and add your NASA API key:
+NASA_API_KEY=your_api_key_here
 
 ## Usage
-1. Open your browser and navigate to http://localhost:3000 to view the application.
-2. Use the navigation bar to select different NASA data endpoints.
-3. Explore the interactive visualizations and data presented for each endpoint.
+To run the application locally, follow these steps:
+
+1. Start the backend server:
+
+Open a terminal, navigate to the backend directory, and run:
+
+cd backend
+node server.js
+
+The backend server will start on http://localhost:5000 (or whichever port you specified in your code).
+
+2. In a new terminal window, start the frontend application:
+
+- Open another terminal, navigate to the frontend directory, and run:
+
+cd frontend
+npm start
+
+The frontend application will start on http://localhost:3000.
+
+3. Open your browser and navigate to http://localhost:3000 to view the application.
+
+4. Explore the features:
+
+- Use the interactive components to explore different NASA datasets, such as the Astronomy Picture of the Day, Mars Rover photos, and EPIC images.
+- Filter and search for data using the provided UI elements.
 
 ## API Endpoints
-The backend server provides the following API endpoints:
+Backend API Routes
+- GET /api/apod: Fetch Astronomy Picture of the Day data.
+- GET /api/mars: Fetch Mars Rover photos.
+- GET /api/epic: Fetch EPIC images from the Earth Polychromatic Imaging Camera.
+- GET /api/neo: Fetch Near Earth Objects data.
 
-- /api/apod: Fetches Astronomy Picture of the Day data.
-- /api/mars-rover: Fetches Mars Rover photos.
-- /api/epic: Fetches Earth Polychromatic Imaging Camera (EPIC) images.
-- /api/near-earth-objects: Fetches data on Near Earth Objects.
+## Data Visualization
+The application processes the received data and presents it through various means, including:
+
+- Images for APOD, Mars Rover photos, and EPIC images.
+- Tables or charts for displaying Near Earth Objects data.
 
 ## Error Handling
 The application implements error handling for API requests and data fetching to provide users with meaningful error messages. If an error occurs during the fetching process, a user-friendly message is displayed.
@@ -105,12 +121,6 @@ Throughout the development process, I encountered several challenges:
 - CORS Issues: When connecting the frontend to the backend, I faced Cross-Origin Resource Sharing (CORS) issues. I resolved this by using the cors middleware in the Express backend to allow requests from the frontend domain.
 
 - Responsive Design: Ensuring the application was responsive across different devices presented challenges in CSS styling. I utilized CSS Flexbox and Grid layouts to improve the responsiveness of components.
-
-## Data Visualization
-Data fetched from the APIs is processed and displayed using various visualization techniques, including:
-
-- Images from the Astronomy Picture of the Day
-- Graphs and charts representing data from Mars Rover photos and Near Earth Objects
 
 ## Error Handling
 The application includes comprehensive error handling to manage edge cases such as:
