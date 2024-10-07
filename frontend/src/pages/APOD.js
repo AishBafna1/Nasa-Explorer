@@ -7,7 +7,6 @@ function APOD() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState(''); // State for selected date
-
   const apiUrl = 'https://nasa-explorer-3x83.onrender.com';
 
   // Function to fetch APOD data
@@ -78,4 +77,3 @@ function APOD() {
 }
 
 export default APOD;
-
