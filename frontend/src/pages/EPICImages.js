@@ -13,7 +13,7 @@ function EPICImages() {
   const fetchEPICImages = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/api/epic'); 
+      const response = await fetch('${apiUrl}/api/epic'); 
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
